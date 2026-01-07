@@ -1,12 +1,8 @@
-﻿using BepInEx;
-using BepInEx.Configuration;
+﻿using System.Linq;
+using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
-using GameData;
-using GTFO.API;
 using HarmonyLib;
-using SNetwork;
-using UnityEngine;
 
 namespace GTFOR1Z1Mod;
 
@@ -15,7 +11,7 @@ public class LevelPlugin : BasePlugin
 {
 
     public static ManualLogSource PluginLogger;
-    private static Harmony _harmony = new Harmony("com.giginss.r1z1");
+    public static Harmony _harmony = new Harmony("com.giginss.r1z1");
     
     public override void Load()
     {
@@ -24,6 +20,7 @@ public class LevelPlugin : BasePlugin
         Log.LogInfo("R1Z1 Level plugin loading...");
         
         _harmony.PatchAll();
+        Log.LogInfo($"Patching successful with {_harmony.GetPatchedMethods().Count()} total patches.");
         Log.LogInfo("R1Z1 Level plugin loaded.");
     }
 }

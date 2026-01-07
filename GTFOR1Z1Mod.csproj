@@ -24,6 +24,9 @@
     <Reference Include="Modules-ASM">
       <HintPath>/deps/Modules-ASM.dll</HintPath>
     </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>/deps/Il2CppSystem.dll</HintPath>
+    </Reference>
     <Reference Include="Il2Cppmscorlib">
       <HintPath>/deps/Il2Cppmscorlib.dll</HintPath>
     </Reference>
