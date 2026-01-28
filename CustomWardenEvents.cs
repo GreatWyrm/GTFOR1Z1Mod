@@ -12,7 +12,8 @@ public class CustomWardenEvents
 {
     private static Dictionary<int, Action<WardenObjectiveEventData>> customWardenEvents = new()
     {
-        { 70, WardenEventProcessor.Event70 }
+        { 70, WardenEventProcessor.Event70 },
+        { 71, WardenEventProcessor.Event71 },
     };
     
     [HarmonyPrefix]
