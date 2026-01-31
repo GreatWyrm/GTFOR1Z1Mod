@@ -37,7 +37,7 @@ public class GlowstickPatches
                 {
                     return;
                 }
-                List<EnemyAgent> enemies = new List<EnemyAgent>(courseNode.m_enemiesInNode.ToArray());
+                var enemies = courseNode.m_enemiesInNode.ToArray();
                 foreach (var enemy in enemies)
                 {
                     if (enemy.EnemyData.persistentID == 47)
