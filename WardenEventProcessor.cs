@@ -16,7 +16,6 @@ public class WardenEventProcessor
             return;
         }
 
-
         PlayerAgent player = PlayerManager.GetLocalPlayerAgent();
         if (!Dimension.GetDimension(player.DimensionIndex, out var playerDimension))
         {
@@ -35,29 +34,35 @@ public class WardenEventProcessor
 
     struct Event71Data
     {
-        public Event71Data(eDimensionIndex startDim, eDimensionIndex targetDim, eLocalZoneIndex zone)
+        public Event71Data(eDimensionIndex startDim, LG_LayerType initialLayer, eLocalZoneIndex startIndex, eDimensionIndex targetDim, LG_LayerType endLayer, eLocalZoneIndex zone)
         {
             startDimIndex = startDim;
+            startLayer = initialLayer;
+            startZoneIndex = startIndex;
             targetDimIndex = targetDim;
-            zoneIndex = zone;
+            targetLayer = endLayer;
+            targetZoneIndex = zone;
         }
         
         public eDimensionIndex startDimIndex;
+        public LG_LayerType startLayer;
+        public eLocalZoneIndex startZoneIndex;
         public eDimensionIndex targetDimIndex;
-        public eLocalZoneIndex zoneIndex;
+        public LG_LayerType targetLayer;
+        public eLocalZoneIndex targetZoneIndex;
     }
     
     public static void Event71(WardenObjectiveEventData data)
     {
         var playerAgent = PlayerManager.Current.m_localPlayerAgentInLevel;
         CoroutineDispatcher.StartCoroutine(
-            Event71Coroutine(new Event71Data(playerAgent.DimensionIndex, data.DimensionIndex, data.LocalIndex)));
+            Event71Coroutine(new Event71Data(playerAgent.DimensionIndex, playerAgent.CourseNode.LayerType, playerAgent.CourseNode.m_zone.LocalIndex, data.DimensionIndex, data.Layer, data.LocalIndex)));
     }
     
     private static System.Collections.IEnumerator Event71Coroutine(Event71Data data)
     {
-        GlobalZoneIndex start = new GlobalZoneIndex(data.startDimIndex, LG_LayerType.MainLayer, data.zoneIndex);
-        GlobalZoneIndex target = new GlobalZoneIndex(data.targetDimIndex, LG_LayerType.MainLayer, data.zoneIndex);
+        GlobalZoneIndex start = new GlobalZoneIndex(data.startDimIndex, data.startLayer, data.startZoneIndex);
+        GlobalZoneIndex target = new GlobalZoneIndex(data.targetDimIndex, data.targetLayer, data.targetZoneIndex);
         EnvironmentStateManager.AttemptSetExpeditionLightModeInZone(target, false);
         EnvironmentStateManager.AttemptSetExpeditionLightModeInZone(start, false);
         yield return new WaitForSeconds(0.4f);
