@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using AIGraph;
-using Enemies;
 using HarmonyLib;
 using LevelGeneration;
 using UnityEngine;
@@ -20,6 +16,7 @@ public class GlowstickPatches
             Color color = new Color(1, 0.9f, 0, 1);
             __instance.m_LightColorTarget = color;
             __instance.s_lightRange = 80;
+            __instance.s_lightLifeTime = 15f;
         }
     }
     
