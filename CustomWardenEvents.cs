@@ -14,6 +14,8 @@ public class CustomWardenEvents
     {
         { 70, WardenEventProcessor.Event70 },
         { 71, WardenEventProcessor.Event71 },
+        { 72, WardenEventProcessor.Event72 },
+        { 73, WardenEventProcessor.Event73 },
     };
     
     [HarmonyPrefix]

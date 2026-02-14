@@ -3,6 +3,7 @@ using LevelGeneration;
 using Player;
 using UnityEngine;
 using GTFO.API.Utilities;
+using SNetwork;
 
 namespace GTFOR1Z1Mod;
 
@@ -80,5 +81,36 @@ public class WardenEventProcessor
         yield return new WaitForSeconds(2.0f);
         EnvironmentStateManager.AttemptSetExpeditionLightModeInZone(target, true);
         EnvironmentStateManager.AttemptSetExpeditionLightModeInZone(start, true);
+    }
+
+    public static void Event72(WardenObjectiveEventData data)
+    {
+        if (SNet.IsMaster)
+        {
+            foreach (var playerAgent in PlayerManager.PlayerAgentsInLevel)
+            {
+                AgentModifierManager.AddSyncedModifierValue(playerAgent, AgentModifier.MeleeResistance, 0.75f);
+                AgentModifierManager.AddSyncedModifierValue(playerAgent, AgentModifier.ProjectileResistance, 0.75f);
+                AgentModifierManager.AddSyncedModifierValue(playerAgent, AgentModifier.SpecialWeaponDamage, 2.0f);
+                AgentModifierManager.AddSyncedModifierValue(playerAgent, AgentModifier.StandardWeaponDamage, 2.0f);
+            }
+        }
+    }
+    
+    public static void Event73(WardenObjectiveEventData data)
+    {
+        if (SNet.IsMaster)
+        {
+            pInfection infection = new pInfection();
+            infection.effect = pInfectionEffect.None;
+            infection.mode = pInfectionMode.Set;
+            infection.amount = 0f;
+            foreach (var playerAgent in PlayerManager.PlayerAgentsInLevel)
+            {
+                PlayerBackpackManager.GiveAmmoToPlayer(playerAgent.Owner, 1f, 1f, 1f);
+                playerAgent.Damage.ModifyInfection(infection, true, true);
+                playerAgent.Damage.AddHealth(playerAgent.Damage.HealthMax, playerAgent);
+            }
+        }
     }
 }
