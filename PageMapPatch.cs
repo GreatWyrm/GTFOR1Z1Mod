@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CellMenu;
 using HarmonyLib;
 using Player;
@@ -30,13 +31,19 @@ public class PageMapPatch
         }
     }
     
+    private static Dictionary<PlayerAgent, GameObject> visibilityCones = new();
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PlayerAgent), nameof(PlayerAgent.Update))]
     public static void EditVisibilityConePostfix(PlayerAgent __instance)
     {
         if (__instance.m_isSetup && __instance.m_dimensionIndex != eDimensionIndex.Reality)
         {
-            GameObject modifiedCone = new GameObject();
+            if (!visibilityCones.ContainsKey(__instance))
+            {
+                visibilityCones.Add(__instance, new GameObject());
+            }
+            GameObject modifiedCone = visibilityCones[__instance];
             modifiedCone.transform.rotation = __instance.m_mapVisibilityTrans.rotation;
             Vector3 position = __instance.m_mapVisibilityTrans.position;
             modifiedCone.transform.localScale = __instance.m_mapVisibilityTrans.localScale;
