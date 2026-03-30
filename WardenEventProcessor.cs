@@ -89,10 +89,10 @@ public class WardenEventProcessor
         {
             foreach (var playerAgent in PlayerManager.PlayerAgentsInLevel)
             {
-                AgentModifierManager.AddSyncedModifierValue(playerAgent, AgentModifier.MeleeResistance, 0.75f);
-                AgentModifierManager.AddSyncedModifierValue(playerAgent, AgentModifier.ProjectileResistance, 0.75f);
-                AgentModifierManager.AddSyncedModifierValue(playerAgent, AgentModifier.SpecialWeaponDamage, 2.0f);
-                AgentModifierManager.AddSyncedModifierValue(playerAgent, AgentModifier.StandardWeaponDamage, 2.0f);
+                AgentModifierManager.AddModifierValue(playerAgent, AgentModifier.MeleeResistance, 0.75f);
+                AgentModifierManager.AddModifierValue(playerAgent, AgentModifier.ProjectileResistance, 0.75f);
+                AgentModifierManager.AddModifierValue(playerAgent, AgentModifier.SpecialWeaponDamage, 2.0f);
+                AgentModifierManager.AddModifierValue(playerAgent, AgentModifier.StandardWeaponDamage, 2.0f);
             }
         }
     }

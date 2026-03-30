@@ -2,7 +2,10 @@
 using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
+using GTFO.API;
 using HarmonyLib;
+using Player;
+using SNetwork;
 
 namespace GTFOR1Z1Mod;
 
@@ -11,7 +14,7 @@ public class LevelPlugin : BasePlugin
 {
 
     public static ManualLogSource PluginLogger;
-    public static Harmony _harmony = new Harmony("com.giginss.r1z1");
+    public static Harmony _harmony = new("com.giginss.r1z1");
     
     public override void Load()
     {
@@ -22,5 +25,18 @@ public class LevelPlugin : BasePlugin
         _harmony.PatchAll();
         Log.LogInfo($"Patching successful with {_harmony.GetPatchedMethods().Count()} total patches.");
         Log.LogInfo("R1Z1 Level plugin loaded.");
+
+        LevelAPI.OnLevelCleanup += RemoveSpecialModidiers;
+    }
+
+    private static void RemoveSpecialModidiers()
+    {
+        if (SNet.IsMaster)
+        {
+            foreach (var playerAgent in PlayerManager.PlayerAgentsInLevel)
+            {
+                AgentModifierManager.ClearAllModifiersOnAgent(playerAgent);
+            }
+        }
     }
 }
