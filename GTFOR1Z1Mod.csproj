@@ -51,8 +51,8 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>/deps/UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>/deps/UnityEngine.ImageConversionModule.dll</HintPath>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>/deps/Unity.TextMeshPro.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

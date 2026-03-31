@@ -27,6 +27,7 @@ public class LevelPlugin : BasePlugin
         Log.LogInfo("R1Z1 Level plugin loaded.");
 
         LevelAPI.OnLevelCleanup += RemoveSpecialModidiers;
+        LevelAPI.OnLevelCleanup += CustomFailScreen.RestoreFailText;
         LevelAPI.OnBuildDone += SetupPuzzleTerminals.SetupPuzzleTerminalPasswords;
     }
 

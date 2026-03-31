@@ -113,4 +113,9 @@ public class WardenEventProcessor
             }
         }
     }
+
+    public static void Event74(WardenObjectiveEventData data)
+    {
+        CustomFailScreen.SetFailText(data.WorldEventObjectFilter);
+    }
 }
