@@ -41,7 +41,7 @@ public class SetupPuzzleTerminals
         list.RemoveAt(list.Count - 1);
         
         Dictionary<string, string> dict = new Dictionary<string, string>(HintToSolutionDict);
-        Random random = new((int)Builder.BuildSeed);
+        Random random = new(Builder.SessionSeedRandom.Seed);
         foreach (var terminal in list)
         {
             if (dict.Count == 0)
