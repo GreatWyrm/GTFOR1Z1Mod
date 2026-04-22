@@ -17,7 +17,7 @@ public class SetupPuzzleTerminals
         { "Two power cells. Two goals. Two great enemies guard the final gate.", "DOWNWARDS" },
         { "The same layout, again and again. The hunt for the cube. The enemies vary.", "CRYPTOMNESIA" },
         { "Your weapons empty. A world of glue. An inadvertent lockdown.", "RECKLESS" },
-        { "A silent reactor. The hardest challenge. The timer ticks down." , "RELEASE" },
+        { "A forced reactor. The hardest challenge. The timer ticks down." , "RELEASE" },
         { "A long trek. Enemies in pursuit. All in vain.", "VALIANT" }, // Weebneet
         { "The effort of a dead man. A microdrive gifted. Magnetism awaits.", "UNPLUGGED" },
         { "Back and forth for an unstable Reactor. Chased to the end by 3 titans.", "ERROR" }, // Weebneet
@@ -25,6 +25,12 @@ public class SetupPuzzleTerminals
         { "An unkillable foe. The dimensions twist. No time for passwords.", "CHAOS" },
         { "A sudden stop. An endless assault. A trojan deployed.", "AWOL" },
         { "The objective corrupts. The 7 ids. Dive into the fog.", "???" },
+        { "A surge of enemies. A cradle reached. Carry it to the end.", "CRIB" },
+        { "Collect and collect. Making a long trek. The sphere in the darkness.", "PABULUM" },
+        { "An endless alarm, repeated again. A cell ferried, and a command to end.", "KDS DEEP" },
+        { "The lights unstable. A password to fix it. The room of an ally.", "FLUX" },
+        { "A reactor on, a reactor off. Two endless terrible titans. The fog steadily rises.", "POWER HUNGRY"},
+        { "Connection with your others. The coordinates obtained. Progress towards a better world.", "LINK" },
     };
 
     public static void SetupPuzzleTerminalPasswords()
